@@ -43,7 +43,7 @@ USER root
 RUN apt-get install -y python-dev help2man unixodbc libfuse-dev libcurl4-gnutls-dev \
                        libbz2-dev zlib1g-dev libpam0g-dev libssl-dev libxml2-dev \
                        libkrb5-dev libjson-perl python-psutil libjson-perl \
-                       python-jsonschema libtool automake
+                       python-jsonschema libtool automake unixodbc-dev
 
 USER $USER
 RUN ./packaging/build.sh --run-in-place icat postgres
