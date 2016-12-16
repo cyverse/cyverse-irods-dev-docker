@@ -1,0 +1,10 @@
+# docker-compose.yml for demo-cyverse-ag
+
+version: '2'
+
+services:
+  cyverse_irods_dev:
+    image: cyverse-irods-dev
+    build:
+      context: .
+      dockerfile: Dockerfile
