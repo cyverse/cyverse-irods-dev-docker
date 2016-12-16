@@ -8,3 +8,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    devices:
+      - /dev/fuse:/dev/fuse:rwm
+    cap_add:
+      - SYS_ADMIN
+    privileged: true
