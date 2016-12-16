@@ -48,4 +48,6 @@ RUN apt-get install -y python-dev help2man unixodbc libfuse-dev libcurl4-gnutls-
 USER $USER
 RUN ./packaging/build.sh --run-in-place icat postgres
 
+ENV PATH $PATH:$HOME/cyverse-irods/iRODS/clients/icommands/bin:$HOME/cyverse-irods/iRODS/clients/fuse/bin
+
 WORKDIR $HOME
