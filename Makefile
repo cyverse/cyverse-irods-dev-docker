@@ -8,7 +8,13 @@ build:
 	$(DOCKER_COMPOSE) build
 
 up: build
-	-$(DOCKER_COMPOSE) run cyverse_irods_dev
+	-$(DOCKER_COMPOSE) run cyverse_irods_dev_new
+
+new_up: build
+	-$(DOCKER_COMPOSE) run cyverse_irods_dev_new
+
+old_up: build
+	-$(DOCKER_COMPOSE) run cyverse_irods_dev_old
 
 clean:
 	-$(DOCKER_COMPOSE) stop

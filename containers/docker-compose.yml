@@ -3,11 +3,22 @@
 version: '2'
 
 services:
-  cyverse_irods_dev:
-    image: cyverse-irods-dev
+  cyverse_irods_dev_old:
+    image: cyverse-irods-dev-old
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.old
+    devices:
+      - /dev/fuse:/dev/fuse:rwm
+    cap_add:
+      - SYS_ADMIN
+    privileged: true
+    
+  cyverse_irods_dev_new:
+    image: cyverse-irods-dev-new
+    build:
+      context: .
+      dockerfile: Dockerfile.new
     devices:
       - /dev/fuse:/dev/fuse:rwm
     cap_add:
