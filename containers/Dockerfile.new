@@ -44,7 +44,7 @@ RUN apt-get update && \
 # Download cyverse-irods
 ##############################################
 USER $USER
-RUN git clone https://github.com/irods/irods_client_fuse.git
+RUN git clone https://github.com/cyverse/irods_client_fuse.git
 
 WORKDIR irods_client_fuse
 
