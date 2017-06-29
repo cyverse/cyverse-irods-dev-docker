@@ -45,8 +45,8 @@ RUN apt-get update && \
 ##############################################
 USER $USER
 RUN git clone https://github.com/cyverse/irods_client_fuse.git
-
 WORKDIR irods_client_fuse
+RUN git checkout develop 
 
 ENV LD_LIBRARY_PATH /opt/irods-externals/clang-runtime3.8-0/lib/
 ENV PATH $PATH:/opt/irods-externals/cmake3.5.2-0/bin
