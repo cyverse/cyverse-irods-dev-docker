@@ -2,7 +2,7 @@
 #
 # VERSION	1.0
 
-FROM	ubuntu:16.04
+FROM	ubuntu:14.04
 MAINTAINER	Illyoung Choi <iychoi@email.arizona.edu>
 
 ##############################################
@@ -21,7 +21,8 @@ ENV USER cyverse
 # Setup utility packages
 ##############################################
 RUN apt-get update && \
-    apt-get install -y wget curl unzip python-pip build-essential ssh fuse git apt-transport-https pkg-config libfuse-dev lsb-release sudo --option=Dpkg::Options::=--force-confdef
+    apt-get install -y wget curl unzip python-pip build-essential ssh fuse git apt-transport-https pkg-config libfuse-dev && \
+    usermod -aG fuse $USER
 
 USER $USER
 WORKDIR $HOME
@@ -34,9 +35,9 @@ RUN wget -qO - https://packages.irods.org/irods-signing-key.asc | apt-key add -
 RUN echo "deb [arch=amd64] https://packages.irods.org/apt/ $(lsb_release -sc) main" | tee /etc/apt/sources.list.d/renci-irods.list
 RUN apt-get update && \
     apt-get install -y irods-dev irods-runtime \
-                       irods-externals-cmake3.11.4-0 irods-externals-clang6.0-0 irods-externals-cppzmq4.2.3-0 \
-                       irods-externals-libarchive3.3.2-1 irods-externals-avro1.9.0-0 irods-externals-boost1.67.0-0 \
-                       irods-externals-clang-runtime6.0-0 irods-externals-jansson2.7-0 irods-externals-zeromq4-14.1.6-0 \
+                       irods-externals-cmake3.5.2 irods-externals-clang3.8-0 irods-externals-cppzmq4.1-0 \
+                       irods-externals-libarchive3.1.2-0 irods-externals-avro1.7.7-0 irods-externals-boost1.60.0-0 \
+                       irods-externals-clang-runtime3.8-0 irods-externals-jansson2.7-0 irods-externals-zeromq4-14.1.3-0 \
                        irods-icommands
 
 ##############################################
@@ -47,8 +48,8 @@ RUN git clone https://github.com/cyverse/irods_client_fuse.git
 WORKDIR irods_client_fuse
 RUN git checkout develop
 
-ENV LD_LIBRARY_PATH /opt/irods-externals/clang-runtime6.0-0/lib/
-ENV PATH $PATH:/opt/irods-externals/cmake3.11.4-0/bin
+ENV LD_LIBRARY_PATH /opt/irods-externals/clang-runtime3.8-0/lib/
+ENV PATH $PATH:/opt/irods-externals/cmake3.5.2-0/bin
 RUN cmake .
 
 WORKDIR $HOME
